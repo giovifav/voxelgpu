@@ -1,5 +1,5 @@
 classic = require("libs.classic")
-terrain = require("src.terrain")(4096)
+terrain = require("src.terrain")(5000)
 render = require("src.render")(terrain)
 function love.load()
    love.graphics.setDefaultFilter('nearest', 'nearest')

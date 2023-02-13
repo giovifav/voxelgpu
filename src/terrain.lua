@@ -4,7 +4,7 @@ function terrain:new(size)
     self.map = love.graphics.newImage(love.image.newImageData(size, size))
     self.lights = love.graphics.newShader("shaders/lights.glsl")
     self.generator = love.graphics.newShader("shaders/generator.glsl")
-    local biome = love.graphics.newImage("assets/biome.png")
+    local biome = love.graphics.newImage("assets/biome_2.png")
     self.generator:send("biome", biome)
     self.canvas = love.graphics.newCanvas(size,size)
     local density = size / 600

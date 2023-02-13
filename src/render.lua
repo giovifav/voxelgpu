@@ -12,6 +12,7 @@ local GAME_HEIGHT = 320
 local SCALE_X = 2
 local SCALE_Y = 2
 local lg = love.graphics
+local lk = love.keyboard
 
 function render:new(terrain)
     lg.setBackgroundColor(backgroundColor)
@@ -40,32 +41,32 @@ end
 
 
 function render:update(dt)
-    if love.keyboard.isDown('a') then
+    if lk.isDown('a') then
         phi = phi + dt * rotationSpeed
-      elseif love.keyboard.isDown('d') then
+      elseif lk.isDown('d') then
         phi = phi - dt * rotationSpeed
       end
     
-      if love.keyboard.isDown('w') then
+      if lk.isDown('w') then
         startPoint = {
           x = startPoint.x + (math.sin(phi + math.pi * 3 / 4) + math.cos(phi + math.pi * 3 / 4)) * dt * moveSpeed,
           y = startPoint.y + (math.cos(phi + math.pi * 3 / 4) - math.sin(phi + math.pi * 3 / 4)) * dt * moveSpeed
         }
-      elseif love.keyboard.isDown('s') then
+      elseif lk.isDown('s') then
         startPoint = {
           x = startPoint.x - (math.sin(phi + math.pi * 3 / 4) + math.cos(phi + math.pi * 3 / 4)) * dt * moveSpeed,
           y = startPoint.y - (math.cos(phi + math.pi * 3 / 4) - math.sin(phi + math.pi * 3 / 4)) * dt * moveSpeed
         }
       end
     
-      if love.keyboard.isDown('q') then
+      if lk.isDown('q') then
         cameraHeight = cameraHeight - dt * rotationSpeed
-      elseif love.keyboard.isDown('e') then
+      elseif lk.isDown('e') then
         cameraHeight = cameraHeight + dt * rotationSpeed
       end
     
       self.render:send('phi', phi)
-      self.render:send('player', {startPoint.x, startPoint.y, cameraHeight})
+      self.render:send('player', {math.floor(startPoint.x +0.5), math.floor(startPoint.y+0.5), cameraHeight})
 end
 
 
